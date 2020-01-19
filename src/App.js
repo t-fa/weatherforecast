@@ -22,6 +22,7 @@ class Weather extends React.Component {
   }
   render() {
     return (
+      <h2>Location Name</h2>
       <div className="container">
         <div className="row">
           <Day day="Monday" condition="sunny"/>
@@ -47,6 +48,10 @@ class Day extends React.Component {
           <div className="card-subtitle">
             {this.props.condition}
           </div>
+          {this.props.currenttemp}
+          {this.props.rain}
+          {this.props.high}
+          {this.props.low}
         </div>
       </div>
     );
