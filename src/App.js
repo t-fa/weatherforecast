@@ -24,11 +24,11 @@ class Weather extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <Day />
-          <Day />
-          <Day />
-          <Day />
-          <Day />
+          <Day day="Monday" condition="sunny"/>
+          <Day day="Tuesday" condition="rainy"/>
+          <Day day="Wednesday" condition="cloudy"/>
+          <Day day="Thursday" condition="thunderstorm"/>
+          <Day day="Friday" condition="snow"/>
         </div>
       </div>
     );
@@ -41,9 +41,14 @@ class Day extends React.Component {
   }
   render() {
     return(
-    <div className="col border">
-            Lorem Ipsum
-    </div>
+      <div className="col">
+        <div className="card">
+          {this.props.day}
+          <div className="card-subtitle">
+            {this.props.condition}
+          </div>
+        </div>
+      </div>
     );
   }
 }
