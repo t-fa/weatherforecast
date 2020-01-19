@@ -1,3 +1,5 @@
+A 5 day weather forecast built in React using data from OpenWeatherAPI.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
