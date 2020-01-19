@@ -24,25 +24,28 @@ class Weather extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col border">
-            1 of 3
-          </div>
-          <div className="col border">
-            2 of 3
-          </div>
-          <div className="col border">
-            3 of 3
-          </div>
-          <div className="col border">
-            4 of 3
-          </div>
-          <div className="col border">
-            5 of 3
-          </div>
+          <Day />
+          <Day />
+          <Day />
+          <Day />
+          <Day />
         </div>
       </div>
     );
   };
+}
+
+class Day extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+    <div className="col border">
+            Lorem Ipsum
+    </div>
+    );
+  }
 }
 
 export default App;
