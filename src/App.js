@@ -69,13 +69,16 @@ class Day extends React.Component {
     return(
       <div className="col">
         <div className="card">
-          {this.props.day}
-          <div className="card-subtitle">
-            {this.props.condition}
-            {this.props.currenttemp}
-            {this.props.rain}
-            {this.props.high}
-            {this.props.low}
+          <div className="card-body">
+            <h5 className="card-text">{this.props.day}</h5>
+            <div className="card-subtitle">
+              <p className="card-text">{this.props.condition}</p>
+              <h3 className="card-title">{this.props.currenttemp}</h3>
+              <p className="card-subtitle">Chance of rain: {this.props.rain}</p>
+              <p className="card-text">
+                High: {this.props.high} Low: {this.props.low}
+              </p>
+            </div>
           </div>
         </div>
       </div>
