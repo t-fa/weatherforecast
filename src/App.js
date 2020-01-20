@@ -3,9 +3,6 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
-  state = {
-    weather: []
-  }
   render () {
     return (
       <div className="container">
@@ -19,13 +16,24 @@ class App extends React.Component {
 class Input extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      zip: ''
+    }
+    this.getZip = this.getZip.bind(this);
+  }  
+
+  getZip(event) {
+    this.setState({
+      zip: event.target.value
+    });
   }
+
   render() {
     return(
       <form>
         <div className="form-group">
           <label for="zipcode">Zip Code:</label>
-          <input type="text" className="form-control w-50 p-3" />
+          <input type="text" className="form-control w-50 p-3" value={this.state.zip} onChange={this.getZip}/>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
@@ -51,10 +59,38 @@ class Weather extends React.Component {
           high="80"
           low="34"
           />
-          <Day day="Tuesday" condition="rainy"/>
-          <Day day="Wednesday" condition="cloudy"/>
-          <Day day="Thursday" condition="thunderstorm"/>
-          <Day day="Friday" condition="snow"/>
+          <Day 
+          day="Tuesday" 
+          condition="rainy"
+          currenttemp="70"
+          rain="22%"
+          high="80"
+          low="34"
+          />
+          <Day 
+          day="Wednesday" 
+          condition="cloudy"
+          currenttemp="70"
+          rain="22%"
+          high="80"
+          low="34"
+          />
+          <Day 
+          day="Thursday" 
+          condition="thunderstorm"
+          currenttemp="70"
+          rain="22%"
+          high="80"
+          low="34"
+          />
+          <Day 
+          day="Friday" 
+          condition="snow"
+          currenttemp="70"
+          rain="22%"
+          high="80"
+          low="34"
+          />
         </div>
       </div>
     );
