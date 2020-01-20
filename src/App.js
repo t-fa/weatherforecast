@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       zip: '',
+      ajax: false,
       weather: []
     }
     this.getZip = this.getZip.bind(this);
@@ -23,12 +24,12 @@ class App extends React.Component {
 
   submitZip(event){
     event.preventDefault();
-    let url = `http://api.openweathermap.org/data/2.5/weather?zip=${this.state.zip},us&units=imperial&APPID=${APIKEY.APIKEY}`
+    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&APPID=${APIKEY.APIKEY}`
     fetch(url)
     .then(res => res.json())
     .then((data) => {
       this.setState({ weather: data })
-      console.log(this.state.weather);
+      this.setState({ ajax: true })
     })
     .catch(console.log)
   }
@@ -44,9 +45,9 @@ class App extends React.Component {
           </div>
           <button type="submit" className="btn btn-primary" onClick={this.submitZip}>Submit</button>
         </form>
-        <Weather 
-        weather={this.state.weather}
-        />
+        {this.state.ajax 
+        ? <Weather weather={this.state.weather} />
+        : <h2>Type your zip to get started</h2> }
       </div>
     );
   }
@@ -59,7 +60,9 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
-        <h2>Weather for: {this.props.weather.name}</h2>
+        <h2>Weather for: {this.props.weather.city.name}</h2>
+        
+        
         <div className="row">
           <Day 
           day="Monday" 
