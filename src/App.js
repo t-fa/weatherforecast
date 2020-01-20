@@ -3,24 +3,13 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
-  render () {
-    return (
-      <div className="container">
-        <h1>5 Day Weather Forecast</h1>
-        <Weather />
-      </div>
-    );
-  }
-}
-
-class Input extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       zip: ''
     }
     this.getZip = this.getZip.bind(this);
-  }  
+  }
 
   getZip(event) {
     this.setState({
@@ -28,17 +17,21 @@ class Input extends React.Component {
     });
   }
 
-  render() {
-    return(
-      <form>
-        <div className="form-group">
-          <label for="zipcode">Zip Code:</label>
-          <input type="text" className="form-control w-50 p-3" value={this.state.zip} onChange={this.getZip}/>
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+  render () {
+    return (
+      <div className="container">
+        <h1>5 Day Weather Forecast</h1>
+        <form>
+          <div className="form-group">
+            <label for="zipcode">Zip Code:</label>
+            <input type="text" className="form-control w-50 p-3" value={this.state.zip} onChange={this.getZip}/>
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+        <Weather />
+      </div>
     );
-  };
+  }
 }
 
 class Weather extends React.Component {
@@ -48,7 +41,6 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
-        <Input />
         <h2>Location Name</h2>
         <div className="row">
           <Day 
