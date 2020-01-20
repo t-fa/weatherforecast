@@ -62,18 +62,19 @@ class Weather extends React.Component {
       <div>
         <h2>Weather for: {this.props.weather.city.name}</h2>
         
-        
+        {console.log(this.props.weather.list)}
         <div className="row">
           <Day 
-          day="Monday" 
-          condition="sunny"
-          currenttemp="70"
-          rain="22%"
-          high="80"
-          low="34"
+          day="Today" 
+          condition={this.props.weather.list[0].weather[0].main}
+          icon={this.props.weather.list[0].weather[0].icon}
+          currenttemp={this.props.weather.list[0].main.temp}
+          humidity={this.props.weather.list[0].main.humidity}
+          high={this.props.weather.list[0].main.temp_max}
+          low={this.props.weather.list[0].main.temp_min}
           />
           <Day 
-          day="Tuesday" 
+          day="Tomorrow" 
           condition="rainy"
           currenttemp="70"
           rain="22%"
@@ -122,10 +123,11 @@ class Day extends React.Component {
             <h5 className="card-text">{this.props.day}</h5>
             <div className="card-subtitle">
               <p className="card-text">{this.props.condition}</p>
-              <h3 className="card-title">{this.props.currenttemp}</h3>
-              <p className="card-subtitle">Chance of rain: {this.props.rain}</p>
+              <img src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`} />
+              <h3 className="card-title">{this.props.currenttemp} °F</h3>
+              <p className="card-subtitle">Humidity: {this.props.humidity}%</p>
               <p className="card-text">
-                High: {this.props.high} Low: {this.props.low}
+                High: {this.props.high} °F Low: {this.props.low} °F
               </p>
             </div>
           </div>
