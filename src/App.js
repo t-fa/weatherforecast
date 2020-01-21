@@ -2,8 +2,6 @@ import React from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const APIKEY = require('./config.js');
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -24,7 +22,7 @@ class App extends React.Component {
 
   submitZip(event){
     event.preventDefault();
-    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${APIKEY.APIKEY}`
+    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${process.env.APIKEY}`
     fetch(url)
     .then(res => res.json())
     .then((data) => {
