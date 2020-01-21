@@ -22,7 +22,7 @@ class App extends React.Component {
 
   submitZip(event){
     event.preventDefault();
-    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${process.env.APIKEY}`
+    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${process.env.REACT_APP_APIKEY}`
     fetch(url)
     .then(res => res.json())
     .then((data) => {
