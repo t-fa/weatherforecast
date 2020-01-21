@@ -40,7 +40,7 @@ class App extends React.Component {
         <h1>5 Day Weather Forecast</h1>
         <form>
           <div className="form-group">
-            <label for="zipcode">Zip Code:</label>
+            <label htmlFor="zipcode">Zip Code:</label>
             <input type="text" className="form-control w-50 p-3" value={this.state.zip} onChange={this.getZip}/>
           </div>
           <button type="submit" className="btn btn-primary" onClick={this.submitZip}>Submit</button>
@@ -72,6 +72,7 @@ class Weather extends React.Component {
           day="Today" 
           condition={this.props.weather.list[0].weather[0].main}
           icon={this.props.weather.list[0].weather[0].icon}
+          alt={this.props.weather.list[0].weather[0].description}
           currenttemp={this.props.weather.list[0].main.temp}
           humidity={this.props.weather.list[0].main.humidity}
           high={this.props.weather.list[0].main.temp_max}
@@ -81,6 +82,7 @@ class Weather extends React.Component {
           day="Tomorrow" 
           condition={this.props.weather.list[1].weather[0].main}
           icon={this.props.weather.list[1].weather[0].icon}
+          alt={this.props.weather.list[1].weather[0].description}
           currenttemp={this.props.weather.list[1].main.temp}
           humidity={this.props.weather.list[1].main.humidity}
           high={this.props.weather.list[1].main.temp_max}
@@ -90,6 +92,7 @@ class Weather extends React.Component {
           day={this.state.daysArr[this.state.dayNum + 2]}
           condition={this.props.weather.list[2].weather[0].main}
           icon={this.props.weather.list[2].weather[0].icon}
+          alt={this.props.weather.list[2].weather[0].description}
           currenttemp={this.props.weather.list[2].main.temp}
           humidity={this.props.weather.list[2].main.humidity}
           high={this.props.weather.list[2].main.temp_max}
@@ -99,6 +102,7 @@ class Weather extends React.Component {
           day={this.state.daysArr[this.state.dayNum + 3]}
           condition={this.props.weather.list[3].weather[0].main}
           icon={this.props.weather.list[3].weather[0].icon}
+          alt={this.props.weather.list[3].weather[0].description}
           currenttemp={this.props.weather.list[3].main.temp}
           humidity={this.props.weather.list[3].main.humidity}
           high={this.props.weather.list[3].main.temp_max}
@@ -108,6 +112,7 @@ class Weather extends React.Component {
           day={this.state.daysArr[this.state.dayNum + 4]}
           condition={this.props.weather.list[4].weather[0].main}
           icon={this.props.weather.list[4].weather[0].icon}
+          alt={this.props.weather.list[4].weather[0].description}
           currenttemp={this.props.weather.list[4].main.temp}
           humidity={this.props.weather.list[4].main.humidity}
           high={this.props.weather.list[4].main.temp_max}
@@ -120,9 +125,6 @@ class Weather extends React.Component {
 }
 
 class Day extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return(
       <div className="col">
@@ -131,7 +133,7 @@ class Day extends React.Component {
             <h5 className="card-text">{this.props.day}</h5>
             <div className="card-subtitle">
               <p className="card-text">{this.props.condition}</p>
-              <img src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`} />
+              <img src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`} alt={this.props.alt} />
               <h3 className="card-title">{this.props.currenttemp} °F</h3>
               <p className="card-subtitle">Humidity: {this.props.humidity}%</p>
               <p className="card-text">
