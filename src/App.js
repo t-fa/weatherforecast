@@ -24,7 +24,7 @@ class App extends React.Component {
 
   submitZip(event){
     event.preventDefault();
-    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&APPID=${APIKEY.APIKEY}`
+    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${APIKEY.APIKEY}`
     fetch(url)
     .then(res => res.json())
     .then((data) => {
@@ -56,13 +56,17 @@ class App extends React.Component {
 class Weather extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      daysArr: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayNum: new Date().getDay()
+    }
   }
+  
   render() {
     return (
       <div>
-        <h2>Weather for: {this.props.weather.city.name}</h2>
-        
-        {console.log(this.props.weather.list)}
+        <h2>Weather for: {this.props.weather.city.name}</h2>  
         <div className="row">
           <Day 
           day="Today" 
@@ -75,35 +79,39 @@ class Weather extends React.Component {
           />
           <Day 
           day="Tomorrow" 
-          condition="rainy"
-          currenttemp="70"
-          rain="22%"
-          high="80"
-          low="34"
+          condition={this.props.weather.list[1].weather[0].main}
+          icon={this.props.weather.list[1].weather[0].icon}
+          currenttemp={this.props.weather.list[1].main.temp}
+          humidity={this.props.weather.list[1].main.humidity}
+          high={this.props.weather.list[1].main.temp_max}
+          low={this.props.weather.list[1].main.temp_min}
           />
           <Day 
-          day="Wednesday" 
-          condition="cloudy"
-          currenttemp="70"
-          rain="22%"
-          high="80"
-          low="34"
+          day={this.state.daysArr[this.state.dayNum + 2]}
+          condition={this.props.weather.list[2].weather[0].main}
+          icon={this.props.weather.list[2].weather[0].icon}
+          currenttemp={this.props.weather.list[2].main.temp}
+          humidity={this.props.weather.list[2].main.humidity}
+          high={this.props.weather.list[2].main.temp_max}
+          low={this.props.weather.list[2].main.temp_min}
           />
           <Day 
-          day="Thursday" 
-          condition="thunderstorm"
-          currenttemp="70"
-          rain="22%"
-          high="80"
-          low="34"
+          day={this.state.daysArr[this.state.dayNum + 3]}
+          condition={this.props.weather.list[3].weather[0].main}
+          icon={this.props.weather.list[3].weather[0].icon}
+          currenttemp={this.props.weather.list[3].main.temp}
+          humidity={this.props.weather.list[3].main.humidity}
+          high={this.props.weather.list[3].main.temp_max}
+          low={this.props.weather.list[3].main.temp_min}
           />
           <Day 
-          day="Friday" 
-          condition="snow"
-          currenttemp="70"
-          rain="22%"
-          high="80"
-          low="34"
+          day={this.state.daysArr[this.state.dayNum + 4]}
+          condition={this.props.weather.list[4].weather[0].main}
+          icon={this.props.weather.list[4].weather[0].icon}
+          currenttemp={this.props.weather.list[4].main.temp}
+          humidity={this.props.weather.list[4].main.humidity}
+          high={this.props.weather.list[4].main.temp_max}
+          low={this.props.weather.list[4].main.temp_min}
           />
         </div>
       </div>
