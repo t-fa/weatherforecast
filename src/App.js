@@ -136,9 +136,8 @@ class Day extends React.Component {
               <img src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`} alt={this.props.alt} />
               <h3 className="card-title">{this.props.currenttemp} °F</h3>
               <p className="card-subtitle">Humidity: {this.props.humidity}%</p>
-              <p className="card-text">
-                High: {this.props.high} °F Low: {this.props.low} °F
-              </p>
+              <p className="card-text">High: {this.props.high} °F</p>
+              <p className="card-text">Low: {this.props.low} °F</p>
             </div>
           </div>
         </div>
