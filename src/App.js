@@ -35,7 +35,7 @@ class App extends React.Component {
   render () {
     return (
       <div className="container">
-        {console.log(process.env.APIKEY)}
+        {console.log(process.env.REACT_APP_APIKEY)}
         <h1>5 Day Weather Forecast</h1>
         <form>
           <div className="form-group">
