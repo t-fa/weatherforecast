@@ -2,8 +2,6 @@ import React from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const REACT_APP_APIKEY = "d1b15818cf04441a9c41b9bce6c309cf";
-
 class App extends React.Component {
   constructor(props){
     super(props);
