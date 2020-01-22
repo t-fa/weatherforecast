@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const REACT_APP_APIKEY = "d1b15818cf04441a9c41b9bce6c309cf";
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -22,7 +24,7 @@ class App extends React.Component {
 
   submitZip(event){
     event.preventDefault();
-    let url = `http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zip},us&units=imperial&cnt=5&APPID=${process.env.REACT_APP_APIKEY}`
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?postal_code=${this.state.zip}&days=5&units=I&key=${REACT_APP_APIKEY}`
     fetch(url)
     .then(res => res.json())
     .then((data) => {
@@ -64,57 +66,57 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
-        <h2>Weather for: {this.props.weather.city.name}</h2>  
+        <h2>Weather for: {this.props.weather.city_name}</h2>  
         <div className="row">
           <Day 
           day="Today" 
-          condition={this.props.weather.list[0].weather[0].main}
-          icon={this.props.weather.list[0].weather[0].icon}
-          alt={this.props.weather.list[0].weather[0].description}
-          currenttemp={this.props.weather.list[0].main.temp}
-          humidity={this.props.weather.list[0].main.humidity}
-          high={this.props.weather.list[0].main.temp_max}
-          low={this.props.weather.list[0].main.temp_min}
+          condition={this.props.weather.data[0].weather.description}
+          icon={this.props.weather.data[0].weather.icon}
+          alt={this.props.weather.data[0].weather.description}
+          currenttemp={this.props.weather.data[0].temp}
+          rain={this.props.weather.data[0].pop}
+          high={this.props.weather.data[0].high_temp}
+          low={this.props.weather.data[0].low_temp}
           />
           <Day 
           day="Tomorrow" 
-          condition={this.props.weather.list[1].weather[0].main}
-          icon={this.props.weather.list[1].weather[0].icon}
-          alt={this.props.weather.list[1].weather[0].description}
-          currenttemp={this.props.weather.list[1].main.temp}
-          humidity={this.props.weather.list[1].main.humidity}
-          high={this.props.weather.list[1].main.temp_max}
-          low={this.props.weather.list[1].main.temp_min}
+          condition={this.props.weather.data[1].weather.description}
+          icon={this.props.weather.data[1].weather.icon}
+          alt={this.props.weather.data[1].weather.description}
+          currenttemp={this.props.weather.data[1].temp}
+          rain={this.props.weather.data[1].pop}
+          high={this.props.weather.data[1].high_temp}
+          low={this.props.weather.data[1].low_temp}
           />
           <Day 
           day={this.state.daysArr[this.state.dayNum + 2]}
-          condition={this.props.weather.list[2].weather[0].main}
-          icon={this.props.weather.list[2].weather[0].icon}
-          alt={this.props.weather.list[2].weather[0].description}
-          currenttemp={this.props.weather.list[2].main.temp}
-          humidity={this.props.weather.list[2].main.humidity}
-          high={this.props.weather.list[2].main.temp_max}
-          low={this.props.weather.list[2].main.temp_min}
+          condition={this.props.weather.data[2].weather.description}
+          icon={this.props.weather.data[2].weather.icon}
+          alt={this.props.weather.data[2].weather.description}
+          currenttemp={this.props.weather.data[2].temp}
+          rain={this.props.weather.data[2].pop}
+          high={this.props.weather.data[2].high_temp}
+          low={this.props.weather.data[2].low_temp}
           />
           <Day 
           day={this.state.daysArr[this.state.dayNum + 3]}
-          condition={this.props.weather.list[3].weather[0].main}
-          icon={this.props.weather.list[3].weather[0].icon}
-          alt={this.props.weather.list[3].weather[0].description}
-          currenttemp={this.props.weather.list[3].main.temp}
-          humidity={this.props.weather.list[3].main.humidity}
-          high={this.props.weather.list[3].main.temp_max}
-          low={this.props.weather.list[3].main.temp_min}
+          condition={this.props.weather.data[3].weather.description}
+          icon={this.props.weather.data[3].weather.icon}
+          alt={this.props.weather.data[3].weather.description}
+          currenttemp={this.props.weather.data[3].temp}
+          rain={this.props.weather.data[3].pop}
+          high={this.props.weather.data[3].high_temp}
+          low={this.props.weather.data[3].low_temp}
           />
           <Day 
           day={this.state.daysArr[this.state.dayNum + 4]}
-          condition={this.props.weather.list[4].weather[0].main}
-          icon={this.props.weather.list[4].weather[0].icon}
-          alt={this.props.weather.list[4].weather[0].description}
-          currenttemp={this.props.weather.list[4].main.temp}
-          humidity={this.props.weather.list[4].main.humidity}
-          high={this.props.weather.list[4].main.temp_max}
-          low={this.props.weather.list[4].main.temp_min}
+          condition={this.props.weather.data[4].weather.description}
+          icon={this.props.weather.data[4].weather.icon}
+          alt={this.props.weather.data[4].weather.description}
+          currenttemp={this.props.weather.data[4].temp}
+          rain={this.props.weather.data[4].pop}
+          high={this.props.weather.data[4].high_temp}
+          low={this.props.weather.data[4].low_temp}
           />
         </div>
       </div>
@@ -131,9 +133,9 @@ class Day extends React.Component {
             <h5 className="card-text">{this.props.day}</h5>
             <div className="card-subtitle">
               <p className="card-text">{this.props.condition}</p>
-              <img src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`} alt={this.props.alt} />
+              <img src={`https://www.weatherbit.io/static/img/icons/${this.props.icon}.png`} alt={this.props.alt} />
               <h3 className="card-title">{this.props.currenttemp} °F</h3>
-              <p className="card-subtitle">Humidity: {this.props.humidity}%</p>
+              <p className="card-subtitle">Chance of Rain: {this.props.rain}%</p>
               <p className="card-text">High: {this.props.high} °F</p>
               <p className="card-text">Low: {this.props.low} °F</p>
             </div>
